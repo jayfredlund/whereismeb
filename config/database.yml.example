@@ -1,0 +1,33 @@
+# SQLite version 3.x
+#   gem install sqlite3
+#
+#   Ensure the SQLite 3 gem is defined in your Gemfile
+#   gem 'sqlite3'
+#
+common: &common
+  adapter: postgresql
+  host: localhost
+  timeout: 5000
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username:
+  password:
+
+# Add your local postgres username and password above
+# It will be loaded for each environment below
+
+development:
+  database: ccm
+  <<: *common
+
+test:
+  database: ccm_test
+  <<: *common
+
+staging:
+  database: ccm
+  <<: *common
+
+production:
+  <<: *common
+  database: wheresmeb_production
